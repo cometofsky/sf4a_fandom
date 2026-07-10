@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sf4a-fandom-app
+    ports:
+      # Expose a single port dynamically using the PORT env variable (default 8080)
+      - "${PORT:-8080}:80"
+    restart: always

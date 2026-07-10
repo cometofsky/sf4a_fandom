@@ -14,9 +14,9 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="lens-standard">
 
-  <!-- Dynamic Background Particles (Canvas/CSS) -->
+  <!-- Dynamic Background Particles -->
   <div class="shadow-overlay"></div>
   <div class="glow-orb glow-cyan"></div>
   <div class="glow-orb glow-gold"></div>
@@ -29,38 +29,42 @@
       <span class="logo-badge">FANDOM</span>
     </div>
     
-    <!-- Lore Perspective Switcher (Continuity Toggle) -->
-    <div class="perspective-container">
-      <label for="perspective-select">🌌 LORE LENS:</label>
-      <select id="perspective-select">
-        <option value="standard">Standard (Neutral)</option>
-        <option value="legion">Legion Records</option>
-        <option value="dynasty">Dynasty Chronicles</option>
-        <option value="heralds">Heralds Archives</option>
-      </select>
+    <!-- Lore Perspective Switcher (Continuity & Theme Toggle) -->
+    <div class="header-controls">
+      <div class="perspective-container">
+        <label for="perspective-select">🌌 LORE LENS:</label>
+        <select id="perspective-select" aria-label="Select Faction Lore Lens">
+          <option value="standard">Standard (Neutral)</option>
+          <option value="legion">Legion Records</option>
+          <option value="dynasty">Dynasty Chronicles</option>
+          <option value="heralds">Heralds Archives</option>
+        </select>
+      </div>
+
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+        ☰ MENU
+      </button>
     </div>
 
-    <nav class="app-nav">
-      <ul>
-        <li><button class="nav-link active" data-tab="factions">Factions</button></li>
-        <li><button class="nav-link" data-tab="chronology">Chronology</button></li>
-        <li><button class="nav-link" data-tab="heroes">Heroes</button></li>
-        <li><button class="nav-link" data-tab="builder">Talent Builder</button></li>
-        <li><button class="nav-link" data-tab="calculator">Damage Calculator</button></li>
-        <li><button class="nav-link" data-tab="simulator">Arena Simulator</button></li>
-        <li><button class="nav-link" data-tab="quiz">Lore Quiz</button></li>
-        <li><button class="nav-link" data-tab="tierlist">Tier List</button></li>
-        <li><button class="nav-link" data-tab="rulings">Council Rulings</button></li>
+    <nav class="app-nav" aria-label="Main Navigation">
+      <ul role="tablist">
+        <li role="presentation"><button class="nav-link active" data-tab="factions" role="tab" aria-selected="true">Factions</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="chronology" role="tab" aria-selected="false">Chronology</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="heroes" role="tab" aria-selected="false">Heroes</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="builder" role="tab" aria-selected="false">Talent Builder</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="calculator" role="tab" aria-selected="false">Damage Calculator</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="simulator" role="tab" aria-selected="false">Arena Simulator</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="quiz" role="tab" aria-selected="false">Lore Quiz</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="tierlist" role="tab" aria-selected="false">Tier List</button></li>
+        <li role="presentation"><button class="nav-link" data-tab="rulings" role="tab" aria-selected="false">Council Rulings</button></li>
       </ul>
     </nav>
   </header>
 
-
-
   <!-- Main Content Wrapper -->
   <main class="app-container">
     
-    <!-- Hero Banner Card -->
+    <!-- Hero Banner Card with Parallax Support -->
     <div class="hero-banner-card">
       <div class="banner-image-container">
         <img src="sf4_arena_banner.jpg" alt="Samurai and Knight clashing in Shadow Fight 4 Arena" width="1200" height="400" fetchpriority="high">
@@ -68,460 +72,46 @@
       </div>
       <div class="banner-text">
         <h1>UNLEASH THE SHADOW</h1>
-        <p>Interactive Character database, tactical talent builders, damage simulation engines, and gameplay trainers for Nekki's cross-platform fighter.</p>
+        <p>Interactive Character archives, tactical talent builders, damage simulation engines, and gameplay trainers for Nekki's cross-platform fighter.</p>
       </div>
     </div>
 
     <!-- TABS SECTION -->
-
-    <!-- Section: Factions & Lore -->
     <section id="factions-tab" class="tab-content active">
-      <div class="section-header">
-        <h2>THE THREE COALITIONS</h2>
-        <p>Explore the factions, fighting philosophies, and beliefs concerning Shadow Energy.</p>
-      </div>
-
-      <div class="factions-grid">
-        <!-- Faction: Legion -->
-        <div class="faction-card faction-legion">
-          <div class="faction-glow"></div>
-          <div class="faction-header">
-            <div class="faction-icon">🛡️</div>
-            <h3>THE LEGION</h3>
-          </div>
-          <p class="faction-motto">“Eradicate the Shadow corruption at all costs.”</p>
-          <div class="faction-body">
-            <p>A stern, militaristic medieval faction that views Shadow Energy as a dangerous plague. They value physical strength, discipline, and heavy armor above all else.</p>
-            <div class="faction-specials">
-              <strong>Combat Specialty:</strong> Unbreakable State (Hyperarmor).
-              <p>During specific attack frames, Legion warriors cannot be staggered by enemy hits, allowing them to trade blows and deal massive damage.</p>
-            </div>
-            <div class="faction-info-pill">Weapons: Greatswords, Hammers, Flails, Axes</div>
-          </div>
-        </div>
-
-        <!-- Faction: Dynasty -->
-        <div class="faction-card faction-dynasty">
-          <div class="faction-glow"></div>
-          <div class="faction-header">
-            <div class="faction-icon">🐉</div>
-            <h3>THE DYNASTY</h3>
-          </div>
-          <p class="faction-motto">“Harness the flow of energy to enrich humanity.”</p>
-          <div class="faction-body">
-            <p>A vibrant, Chinese-inspired imperial coalition representing thousands of martial arts schools. They believe Shadow Energy should be integrated into daily life and tech.</p>
-            <div class="faction-specials">
-              <strong>Combat Specialty:</strong> High-Hit-Count Combos.
-              <p>Acrobatic, quick, and fluid. Dynasty attacks focus on rapid multi-hits that continuous stagger enemies, charging their Shadow Energy rapidly.</p>
-            </div>
-            <div class="faction-info-pill">Weapons: Staffs, Guandao, Nunchaku, Dual Swords</div>
-          </div>
-        </div>
-
-        <!-- Faction: Heralds -->
-        <div class="faction-card faction-heralds">
-          <div class="faction-glow"></div>
-          <div class="faction-header">
-            <div class="faction-icon">👁️</div>
-            <h3>THE HERALDS</h3>
-          </div>
-          <p class="faction-motto">“Analyze, experiment, and perfect through science.”</p>
-          <div class="faction-body">
-            <p>An enigmatic, advanced Japanese-inspired faction. They treat Shadow Energy with scientific precision, designing advanced gear, cybernetics, and nanotech.</p>
-            <div class="faction-specials">
-              <strong>Combat Specialty:</strong> Critical Hits & Spacing.
-              <p>Precise and clinical. Heralds rely on high-reach weapons, rapid counter-attacks, and guaranteed critical strikes that knock down opponents.</p>
-            </div>
-            <div class="faction-info-pill">Weapons: Katanas, Glaives, Sai, Kunai</div>
-          </div>
-        </div>
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
 
-    <!-- Section: Chronology & Timeline -->
     <section id="chronology-tab" class="tab-content">
-      <div class="section-header">
-        <h2>SHADOW FIGHT CHRONOLOGY</h2>
-        <p>Follow the historical timeline of the universe and understand the tactical balance between the factions.</p>
-      </div>
-
-      <!-- Vertical Timeline -->
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
-
-        <!-- Node 1 -->
-        <div class="timeline-node">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="timeline-date">Era I: The Gates of Shadows</span>
-            <h4>Shadow's Mistake (SF1 & SF2)</h4>
-            <p>A nameless, boastful warrior searches for a worthy opponent and opens the Gates of Shadows. Unleashed demons steal his physical body, transforming him into a silhouette. Shadow must defeat the demon bosses and seal the Gates, establishing the presence of Shadow Energy in the physical world.</p>
-          </div>
-        </div>
-
-        <!-- Node 2 -->
-        <div class="timeline-node">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="timeline-date">Era II: The Shades Crisis</span>
-            <h4>Shadow Rifts (Shades)</h4>
-            <p>Directly following the sealing of the Gates, mysterious Shadow Rifts tear open across the lands. Shadow, still adapting to his human form, battles mutating shadow remnants, balancing the elemental shadow blooms before they corrupt the fabric of reality.</p>
-          </div>
-        </div>
-
-        <!-- Node 3 -->
-        <div class="timeline-node">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="timeline-date">Era III: The Faction Division</span>
-            <h4>The Great Convergence (SF3)</h4>
-            <p>Decades pass. Shadow Energy has permeated society, splitting humanity into three distinct ideological paths. The Legion builds a wall to quarantine it; the Dynasty lives in harmony with it; and the Heralds analyze it scientifically. Shadow's descendants decide the timeline convergence.</p>
-          </div>
-        </div>
-
-        <!-- Node 4 -->
-        <div class="timeline-node">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="timeline-date">Era IV: The Temporal Clash</span>
-            <h4>The Shadow Mind's Tournament (SF4: Arena)</h4>
-            <p>The Shadow Mind, a sentient force of pure Shadow Energy, tears open space-time. It gathers the greatest champions, commanders, and assassins from all eras and conflicting timelines into the Arena, forcing them to fight in a perpetual tournament for supreme energy control.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Matchup Matrix -->
-      <div class="matrix-section">
-        <h3>FACTION MATCHUP MATRIX</h3>
-        <p class="matrix-desc">Each faction's primary mechanic excels against one style but falters against another. Explore the rock-paper-scissors dynamic:</p>
-        
-        <div class="matrix-grid">
-          <div class="matrix-card mat-legion">
-            <h4>🛡️ LEGION VS DYNASTY</h4>
-            <p class="mat-advantage"><strong>Advantage:</strong> Legion's **Unbreakable State** absorbs fast, multi-hit Dynasty strikes, allowing them to trade blows and smash through combos.</p>
-            <p class="mat-disadvantage"><strong>Weakness:</strong> Slow weapon recovery makes Legion easy targets for Dynasty's acrobatic dodges and close-quarters throws.</p>
-          </div>
-
-          <div class="matrix-card mat-dynasty">
-            <h4>🐉 DYNASTY VS HERALDS</h4>
-            <p class="mat-advantage"><strong>Advantage:</strong> Dynasty's **High mobility & speed** can close gaps, interrupting the Heralds' slower, precise setups before they can land critical hits.</p>
-            <p class="mat-disadvantage"><strong>Weakness:</strong> Relying on continuous hit combos makes them vulnerable to the Heralds' instantaneous counter-attacks.</p>
-          </div>
-
-          <div class="matrix-card mat-heralds">
-            <h4>👁️ HERALDS VS LEGION</h4>
-            <p class="mat-advantage"><strong>Advantage:</strong> Heralds' **High-reach critical slashes** and instant counters can strike Legion warriors just before or after their unbreakable windows open, knocking them down.</p>
-            <p class="mat-disadvantage"><strong>Weakness:</strong> Low defense armor rating means Heralds will take fatal damage if they fail to interrupt a Legionnaire's heavy strike.</p>
-          </div>
-        </div>
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
-
-    <!-- Section: Hero Database -->
 
     <section id="heroes-tab" class="tab-content">
-      <div class="section-header">
-        <h2>HERO ARCHIVES</h2>
-        <p>Browse the roster of legendary combatants. Filter by faction and click on a card to calculate dynamic stats at different levels.</p>
-      </div>
-
-      <!-- Filters & Database Search -->
-      <div class="search-filter-bar">
-        <search class="search-container">
-          <input type="search" id="hero-search" placeholder="Search hero names..." aria-label="Search heroes">
-        </search>
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="all">All Factions</button>
-          <button class="filter-btn" data-filter="Legion">Legion</button>
-          <button class="filter-btn" data-filter="Dynasty">Dynasty</button>
-          <button class="filter-btn" data-filter="Heralds">Heralds</button>
-        </div>
-      </div>
-
-      <!-- Hero Cards Grid -->
-      <div class="heroes-grid" id="heroes-grid-container">
-        <!-- Rendered dynamically via JS -->
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
 
-    <!-- Section: Talent Builder -->
     <section id="builder-tab" class="tab-content">
-      <div class="section-header">
-        <h2>TACTICAL TALENT BUILDER</h2>
-        <p>Select your hero, customize their talent tree, choose a weapon, and generate shareable build codes for matchmaking.</p>
-      </div>
-
-      <div class="builder-layout">
-        <!-- Sidebar: Hero Selector -->
-        <div class="builder-sidebar">
-          <h3>SELECT CHAMPION</h3>
-          <div class="builder-hero-list" id="builder-hero-selector">
-            <!-- Dynamically populated via JS -->
-          </div>
-        </div>
-
-        <!-- Main Workspace: Tree & Weapons -->
-        <div class="builder-workspace">
-          <div class="selected-hero-badge" id="builder-hero-header">
-            <!-- Selected Hero Summary -->
-          </div>
-
-          <div class="builder-columns">
-            <!-- Talent Tree -->
-            <div class="tree-panel">
-              <h4>Talent Tree Progression</h4>
-              <div class="talent-tree-container" id="talent-tree-grid">
-                <!-- Dynamically populated tiers 1-5 -->
-              </div>
-            </div>
-
-            <!-- Weapon & Settings -->
-            <div class="settings-panel">
-              <h4>Gear Configuration</h4>
-              <div class="weapon-selector-group">
-                <label for="weapon-select">Equipped Weapon:</label>
-                <select id="weapon-select">
-                  <!-- Dynamically populated -->
-                </select>
-                <div class="weapon-perk-display" id="weapon-perk-desc">
-                  <!-- Weapon perks visual display -->
-                </div>
-              </div>
-
-              <div class="build-summary-box">
-                <h4>Build Summary</h4>
-                <ul class="build-specs" id="build-active-list">
-                  <!-- Active stats/talents list -->
-                </ul>
-                <div class="code-share-group">
-                  <input type="text" id="build-code-input" value="CODE-LOADING" placeholder="Enter or paste build code...">
-                  <button type="button" id="copy-build-btn" class="action-btn">Copy Code</button>
-                </div>
-                <div id="copy-toast" class="toast-popup">Build code copied!</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
 
-    <!-- Section: Damage Calculator -->
     <section id="calculator-tab" class="tab-content">
-      <div class="section-header">
-        <h2>COMBAT DAMAGE CALCULATOR</h2>
-        <p>Simulate attacks and analyze stats. Choose your Attacker and Defender, configure scaling factors, and trigger simulated hits.</p>
-      </div>
-
-      <div class="calculator-grid">
-        <!-- Column 1: Attacker -->
-        <div class="calc-panel attacker-panel">
-          <h3 class="panel-title text-gold">💥 ATTACKER</h3>
-          <div class="calc-input-group">
-            <label for="calc-attacker-select">Hero:</label>
-            <select id="calc-attacker-select"></select>
-          </div>
-          <div class="calc-sliders">
-            <div class="slider-row">
-              <label for="attacker-hero-lvl">Hero Level: <span id="val-att-hl">1</span></label>
-              <input type="range" id="attacker-hero-lvl" min="1" max="13" value="1">
-            </div>
-            <div class="slider-row">
-              <label for="attacker-dojo-lvl">Dojo Level: <span id="val-att-dl">1</span></label>
-              <input type="range" id="attacker-dojo-lvl" min="1" max="13" value="1">
-            </div>
-          </div>
-          <div class="stats-panel-readout" id="attacker-stats-readout">
-            <!-- Stats -->
-          </div>
-          <div class="calc-input-group">
-            <label for="attacker-action-select">Combat Action / Attack:</label>
-            <select id="attacker-action-select">
-              <option value="basic">Basic Attack (Punch Combo)</option>
-              <option value="heavy">Heavy Attack (Charged Blow)</option>
-              <option value="special">Special Character Skill</option>
-              <option value="shadow">Shadow Ability (Unblockable)</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Combat Execution Center -->
-        <div class="calc-middle-panel">
-          <div class="combat-bars-display">
-            <div class="combat-char-display text-gold" id="combat-att-name">Attacker</div>
-            <div class="vs-text">VS</div>
-            <div class="combat-char-display text-cyan" id="combat-def-name">Defender</div>
-          </div>
-          <div class="arena-visualizer">
-            <div class="combat-actor attacker-actor" id="visual-attacker">👤</div>
-            <div class="combat-actor defender-actor" id="visual-defender">👤</div>
-            <div class="damage-number" id="visual-damage-number">0</div>
-          </div>
-          <button type="button" id="trigger-combat-btn" class="combat-trigger-btn">EXECUTE COMBAT ACTION</button>
-          
-          <div class="damage-report-card" id="damage-report-card">
-            <h4>Damage Computation</h4>
-            <div class="report-row"><span>Base Action Power:</span> <span id="rep-base-power">0</span></div>
-            <div class="report-row"><span>Attacker Stat Boost:</span> <span id="rep-att-multiplier">x1.00</span></div>
-            <div class="report-row"><span>Defender Mitigated:</span> <span id="rep-def-reduction">-0%</span></div>
-            <div class="report-divider"></div>
-            <div class="report-row net-row"><span>NET DAMAGE DEALT:</span> <span id="rep-net-damage" class="text-gold">0</span></div>
-            <div class="report-divider"></div>
-            <div class="report-row"><span>Est. Frame Advantage:</span> <span id="rep-advantage">+0</span></div>
-            <div class="report-row punish-row" id="rep-punish-row"><span id="rep-punish-text">&mdash;</span></div>
-          </div>
-        </div>
-
-        <!-- Column 2: Defender -->
-        <div class="calc-panel defender-panel">
-          <h3 class="panel-title text-cyan">🛡️ DEFENDER</h3>
-          <div class="calc-input-group">
-            <label for="calc-defender-select">Hero:</label>
-            <select id="calc-defender-select"></select>
-          </div>
-          <div class="calc-sliders">
-            <div class="slider-row">
-              <label for="defender-hero-lvl">Hero Level: <span id="val-def-hl">1</span></label>
-              <input type="range" id="defender-hero-lvl" min="1" max="13" value="1">
-            </div>
-            <div class="slider-row">
-              <label for="defender-dojo-lvl">Dojo Level: <span id="val-def-dl">1</span></label>
-              <input type="range" id="defender-dojo-lvl" min="1" max="13" value="1">
-            </div>
-          </div>
-          <div class="stats-panel-readout" id="defender-stats-readout">
-            <!-- Stats -->
-          </div>
-          <div class="health-bar-container">
-            <div class="health-bar-label">Simulated HP: <span id="calc-hp-ratio">100/100</span></div>
-            <div class="health-bar">
-              <div class="health-bar-fill" id="calc-hp-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
 
-    <!-- Section: Arena Simulator Mini-Game -->
     <section id="simulator-tab" class="tab-content">
-      <div class="section-header">
-        <h2>ARENA COMBAT TRAINING</h2>
-        <p>Test your knowledge of Arena's mechanics in this interactive Rock-Paper-Scissors simulator. Defeat the shadow opponent!</p>
-      </div>
-
-      <div class="sim-container">
-        <div class="sim-arena">
-          <!-- Player Side -->
-          <div class="sim-player-card">
-            <h3 id="sim-player-title">Hero</h3>
-            <div class="sim-character-sprite" id="sim-player-sprite">🛡️</div>
-            <div class="health-bar-container">
-              <div class="health-bar"><div class="health-bar-fill" id="sim-player-hp"></div></div>
-            </div>
-            <div class="shadow-bar-container">
-              <div class="shadow-bar"><div class="shadow-bar-fill" id="sim-player-shadow"></div></div>
-            </div>
-            <div class="active-status" id="sim-player-action">READY</div>
-          </div>
-
-          <div class="sim-versus-shield">VS</div>
-
-          <!-- Opponent Side -->
-          <div class="sim-opponent-card">
-            <h3>Shadow AI</h3>
-            <div class="sim-character-sprite opponent-sprite" id="sim-opponent-sprite">👤</div>
-            <div class="health-bar-container">
-              <div class="health-bar"><div class="health-bar-fill bg-cyan" id="sim-opponent-hp"></div></div>
-            </div>
-            <div class="shadow-bar-container">
-              <div class="shadow-bar"><div class="shadow-bar-fill bg-cyan" id="sim-opponent-shadow"></div></div>
-            </div>
-            <div class="active-status" id="sim-opponent-action">READY</div>
-          </div>
-        </div>
-
-        <!-- Controls panel -->
-        <div class="sim-controls-panel">
-          <div class="sim-instructions">
-            <strong>The Rules of the Arena:</strong>
-            <ul>
-              <li><strong>Attack</strong> beats <strong>Throw</strong> (intercepts close moves)</li>
-              <li><strong>Block</strong> beats <strong>Attack</strong> (negates normal strikes)</li>
-              <li><strong>Throw</strong> beats <strong>Block</strong> (bypasses guards)</li>
-              <li>Charge your Shadow meter! Once full, release an unblockable **SHADOW STORM**!</li>
-            </ul>
-          </div>
-
-          <div class="sim-actions-row">
-            <button type="button" class="sim-action-btn" data-action="attack">⚔️ Attack</button>
-            <button type="button" class="sim-action-btn" data-action="block">🛡️ Block</button>
-            <button type="button" class="sim-action-btn" data-action="throw">🤼 Throw</button>
-            <button type="button" class="sim-action-btn shadow-release-btn" id="sim-shadow-btn" disabled>⚡ SHADOW FORM</button>
-          </div>
-
-          <div class="sim-feed">
-            <h4>Combat Feeds</h4>
-            <div class="sim-log" id="sim-combat-log">
-              <div class="log-entry system-msg">Select a hero below and begin your training session.</div>
-            </div>
-          </div>
-
-          <!-- Hero pick inside simulator -->
-          <div class="sim-hero-select-row">
-            <span>Select Fighting Style:</span>
-            <div class="sim-hero-choices" id="sim-hero-picks">
-              <!-- JS dynamic picks -->
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
 
-    <!-- Section: Lore Quiz -->
     <section id="quiz-tab" class="tab-content">
-      <div class="section-header">
-        <h2>LORE MASTERY QUIZ</h2>
-        <p>Test your knowledge of the Shadow Fight universe and unlock exclusive Dojo achievements!</p>
-      </div>
-
-      <div class="quiz-container">
-        <!-- Question Card -->
-        <div class="quiz-card" id="quiz-question-card">
-          <div class="quiz-progress">Question <span id="quiz-current-num">1</span> of 5</div>
-          <h3 id="quiz-question-text">Loading question...</h3>
-          <div class="quiz-options" id="quiz-options-container">
-            <!-- Dynamic option buttons -->
-          </div>
-          <button type="button" id="quiz-next-btn" class="action-btn" style="display:none; margin: 1.5rem auto 0; width: fit-content;">Next Question</button>
-        </div>
-
-        <!-- Result Card -->
-        <div class="quiz-card" id="quiz-result-card" style="display:none;">
-          <h3 class="text-gold">QUIZ COMPLETE</h3>
-          <div class="quiz-score-display">
-            <span id="quiz-score-fraction">0 / 5</span>
-            <p id="quiz-rank-title">Rank: Novice</p>
-          </div>
-          <p id="quiz-feedback-text">Keep training in the archives to master the lore!</p>
-          <div class="quiz-unlock-badge" id="quiz-badge-unlock" style="display:none;">
-            <span class="badge-icon">🏆</span>
-            <div>
-              <strong>Badge Unlocked: Shadow Scholar</strong>
-              <p>Showcased absolute mastery over the Gates, Factions, and Arena lore.</p>
-            </div>
-          </div>
-          <button type="button" id="quiz-retry-btn" class="action-btn" style="margin-block-start: 1.5rem; width: fit-content; margin-inline: auto;">Try Again</button>
-        </div>
-      </div>
+      <div class="skeleton-loader-container"><div class="skeleton-bar"></div></div>
     </section>
 
-    <!-- Section: Community Tier List -->
     <section id="tierlist-tab" class="tab-content">
       <div class="section-header">
         <h2>COMMUNITY TIER LIST</h2>
-        <p>Vote in head-to-head matchups to shape the community ranking. Seeded from base stat totals, refined by your votes (stored on this device).</p>
+        <p>Vote in head-to-head matchups to shape the community ranking. Seeded from base stat totals, refined by your votes (stored locally).</p>
       </div>
 
-      <div class="tierlist-container">
+      <div class="tierlist-container" id="tierlist-container">
         <div class="tier-vote-panel">
           <h3>WHO WINS?</h3>
           <div class="tier-vote-matchup" id="tier-vote-matchup">
@@ -539,21 +129,18 @@
       </div>
     </section>
 
-    <!-- Section: Dojo Council Rulings (Balance Changelog) -->
     <section id="rulings-tab" class="tab-content">
       <div class="section-header">
         <h2>DOJO COUNCIL RULINGS</h2>
         <p>The in-universe record of hero adjustments handed down by the Dojo Council, in the style of official balance patch notes.</p>
       </div>
-
       <div class="rulings-list" id="rulings-list-container">
         <!-- Dynamically populated changelog entries -->
       </div>
     </section>
 
     <!-- HERO DETAILS MODAL -->
-    <dialog id="hero-modal" class="detail-modal">
-
+    <dialog id="hero-modal" class="detail-modal" aria-labelledby="modal-hero-title">
       <form method="dialog" class="modal-form">
         <button class="modal-close-btn" aria-label="Close modal">&times;</button>
         <div class="modal-content-wrapper" id="modal-hero-content">
@@ -568,7 +155,7 @@
     <p>&copy; 2026 Shadow Fight 4: Arena Fandom Hub. Created by and for fans. All rights, characters, and assets belong to Nekki and Banzai.Games.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="app.js"></script>
+  <!-- Modular Application Entrypoint -->
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

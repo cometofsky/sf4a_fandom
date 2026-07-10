@@ -1,0 +1,11 @@
+{
+  "name": "sf4a-fandom",
+  "version": "2.0.0",
+  "description": "Interactive Fandom Companion for Shadow Fight 4: Arena",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "dev": "npx -y serve ."
+  }
+}
