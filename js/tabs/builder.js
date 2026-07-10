@@ -2,7 +2,7 @@
 import { HERO_DATABASE } from '../data.js';
 import { generateBuildCode, parseBuildCode } from '../engines.js';
 import { state, notifyStateChange } from '../state.js';
-import { renderHeroAvatar, showToast } from '../ui.js';
+import { renderHeroAvatar, showToast, escapeHtml } from '../ui.js';
 
 let validationMsg = { text: "", type: "info" };
 
@@ -163,16 +163,16 @@ export function renderBuilderTab() {
 
     const matchedHero = HERO_DATABASE.find(h => h.id.toUpperCase().slice(0, 3) === parsed.heroPrefix);
     if (!matchedHero) {
-      validationMsg = { text: `❌ Unknown hero prefix '${parsed.heroPrefix}'.`, type: "error" };
+      validationMsg = { text: `❌ Unknown hero prefix '${escapeHtml(parsed.heroPrefix)}'.`, type: "error" };
       renderBuilderTab();
       return;
     }
 
     if (matchedHero.id !== hero.id) {
       state.selectedHeroId = matchedHero.id;
-      validationMsg = { text: `ℹ️ Prefix '${parsed.heroPrefix}' belongs to ${matchedHero.name}. Switched hero selection automatically.`, type: "info" };
+      validationMsg = { text: `ℹ️ Prefix '${escapeHtml(parsed.heroPrefix)}' belongs to ${matchedHero.name}. Switched hero selection automatically.`, type: "info" };
     } else {
-      validationMsg = { text: `✅ Successfully loaded build code ${inputCode} for ${hero.name}!`, type: "success" };
+      validationMsg = { text: `✅ Successfully loaded build code ${escapeHtml(inputCode)} for ${hero.name}!`, type: "success" };
     }
 
     state.builderBuilds[matchedHero.id] = {

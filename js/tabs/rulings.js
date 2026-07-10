@@ -1,5 +1,6 @@
 // Dojo Council Rulings Controller
 import { DOJO_COUNCIL_RULINGS } from '../content.js';
+import { escapeHtml } from '../ui.js';
 
 let rulingsSearchQuery = "";
 
@@ -24,5 +25,5 @@ export function renderRulingsTab() {
     </div>
   `).join("");
 
-  container.innerHTML = rulingsHTML || `<p class="empty-state">No council rulings found matching "${rulingsSearchQuery}"</p>`;
+  container.innerHTML = rulingsHTML || `<p class="empty-state">No council rulings found matching "${escapeHtml(rulingsSearchQuery)}"</p>`;
 }

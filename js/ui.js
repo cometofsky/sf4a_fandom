@@ -2,6 +2,21 @@
 import { CONFIG } from './config.js';
 
 /**
+ * Safely escapes HTML special characters to prevent DOM XSS.
+ * @param {any} str
+ * @returns {string}
+ */
+export function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
  * Renders a cohesive hero avatar box. Uses local photo if present with SVG/CSS heroic crest fallback.
  * @param {Object} hero
  * @param {string} extraClass
@@ -10,7 +25,7 @@ import { CONFIG } from './config.js';
 export function renderHeroAvatar(hero, extraClass = "") {
   const factionClass = `faction-${(hero.faction || "Legion").toLowerCase()}`;
   const photoMarkup = hero.photo
-    ? `<img src="${hero.photo}" alt="${hero.name}" class="hero-avatar-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">`
+    ? `<img src="${hero.photo}" alt="${escapeHtml(hero.name)}" class="hero-avatar-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">`
     : '';
   const fallbackDisplay = hero.photo ? 'style="display:none;"' : '';
 
@@ -19,7 +34,7 @@ export function renderHeroAvatar(hero, extraClass = "") {
       ${photoMarkup}
       <div class="hero-avatar-fallback" ${fallbackDisplay}>
         <span class="hero-crest-emoji">${hero.avatar || "🛡️"}</span>
-        <span class="hero-crest-badge">${(hero.faction || "L").slice(0, 1)}</span>
+        <span class="hero-crest-badge">${escapeHtml((hero.faction || "L").slice(0, 1))}</span>
       </div>
     </div>
   `;
@@ -43,9 +58,9 @@ export function showToast(message, type = "success") {
   toast.className = `toast-message toast-${type}`;
   toast.setAttribute("role", "status");
   toast.setAttribute("aria-live", "polite");
-  toast.innerHTML = `
-    <span>${message}</span>
-  `;
+  const span = document.createElement("span");
+  span.textContent = message;
+  toast.appendChild(span);
 
   container.appendChild(toast);
   setTimeout(() => toast.classList.add("show"), 10);
@@ -109,8 +124,8 @@ export function showConfirmModal({ title, message, onConfirm }) {
 
   confirmDialog.innerHTML = `
     <form method="dialog" class="modal-form confirm-form">
-      <h3 class="confirm-title">${title}</h3>
-      <p class="confirm-msg">${message}</p>
+      <h3 class="confirm-title">${escapeHtml(title)}</h3>
+      <p class="confirm-msg">${escapeHtml(message)}</p>
       <div class="confirm-actions">
         <button type="button" class="btn-secondary confirm-cancel-btn">Cancel</button>
         <button type="button" class="btn-primary confirm-ok-btn">Confirm Reset</button>

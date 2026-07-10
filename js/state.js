@@ -161,7 +161,9 @@ export function processUrlHashDeepLink() {
   const compareParams = params.get("compare");
   if (compareParams) {
     const [hA, hB] = compareParams.split(",");
-    if (hA && hB) {
+    const validA = HERO_DATABASE.some(h => h.id === hA);
+    const validB = HERO_DATABASE.some(h => h.id === hB);
+    if (validA && validB) {
       state.compareHeroIdA = hA;
       state.compareHeroIdB = hB;
       state.activeTab = "heroes";

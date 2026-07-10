@@ -2,7 +2,7 @@
 import { HERO_DATABASE } from '../data.js';
 import { calculateStat } from '../engines.js';
 import { state, notifyStateChange } from '../state.js';
-import { renderHeroAvatar, openModalWithA11y } from '../ui.js';
+import { renderHeroAvatar, openModalWithA11y, escapeHtml } from '../ui.js';
 
 let currentFilterFaction = "all";
 let currentSearchQuery = "";
@@ -47,7 +47,7 @@ export function renderHeroesTab() {
         </article>
       `).join("")
     : `<div class="empty-state-card">
-         <p>No heroes match your search "<strong>${currentSearchQuery}</strong>"</p>
+         <p>No heroes match your search "<strong>${escapeHtml(currentSearchQuery)}</strong>"</p>
          <button type="button" class="btn-clear-search">Clear Search</button>
        </div>`;
 
